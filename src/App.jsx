@@ -1,5 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
 
+const getAssetUrl = (path) => {
+  if (!path) return path;
+  const cleanPath = path.replace(/^(\.\/|\/)/, "");
+  return `${import.meta.env.BASE_URL}${cleanPath}`;
+};
+
 const WHATSAPP_LINK = 'https://wa.me/60123456789?text=%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E6%9C%89%E5%85%B4%E8%B6%A3%E5%8F%82%E5%8A%A0%E3%80%90%E6%97%A0%E9%99%90%E6%9D%A0%E6%9D%86%EF%BD%9CFacebook%20%E8%90%A5%E9%94%80%E8%AE%AD%E7%BB%83%E8%90%A5%E3%80%91%EF%BC%8C%E6%83%B3%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E8%AF%A6%E6%83%85%E3%80%82'
 const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbywkS3XXyHoJLNnfcNjPo707vGsK_oYYThl8bNlCTRVEY3X6DOKrZZbXPXUf4pQQMI/exec'
 const FB_GROUP_LINK = 'https://www.facebook.com/groups/champacademy'
@@ -260,13 +266,13 @@ export default function App() {
       >
         <div 
           className="absolute inset-0 opacity-20 bg-cover bg-center"
-          style={{ backgroundImage: 'url(./assets/hero-background-CgUbRfkl.png)' }}
+          style={{ backgroundImage: `url(${getAssetUrl("assets/hero-background-CgUbRfkl.png")})` }}
         />
         
         <div className="relative z-10 container px-4 py-12 md:py-20 max-w-4xl mx-auto text-center space-y-6 md:space-y-8 pt-8">
           <div className="flex flex-col items-center">
             <img 
-              src="./assets/hero-instructor-updated-D8zo6JTK.png" 
+              src={getAssetUrl("assets/hero-instructor-updated-D8zo6JTK.png")} 
               alt="Louis Loh" 
               className="max-w-sm md:max-w-xl w-full mb-4 object-contain" 
             />
@@ -310,7 +316,7 @@ export default function App() {
               <span className="font-semibold">8:30 till Late</span>
             </div>
             <div className="flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-sm px-6 py-3 rounded-lg">
-              <img src="./assets/zoom-logo-updated-DjpWGTsc.png" alt="Zoom" className="h-6" />
+              <img src={getAssetUrl("assets/zoom-logo-updated-DjpWGTsc.png")} alt="Zoom" className="h-6" />
               <span className="text-primary-foreground font-semibold text-lg">线上</span>
             </div>
           </div>
@@ -323,8 +329,8 @@ export default function App() {
         className="relative py-16 md:py-24 bg-gradient-to-br from-secondary to-secondary/90"
       >
         <div 
-          className="absolute inset-0 opacity-5 bg-cover bg-center"
-          style={{ backgroundImage: 'url(./assets/leverage-pattern-tTCXtwN8.jpg)' }}
+          className="absolute inset-0 opacity-20 bg-cover bg-center"
+          style={{ backgroundImage: `url(${getAssetUrl("assets/leverage-pattern-tTCXtwN8.jpg")})` }}
         />
         
         <div className="relative z-10 container px-4 max-w-4xl mx-auto text-center space-y-12">
@@ -348,7 +354,7 @@ export default function App() {
             {/* Card Avoid */}
             <div className="flex flex-col items-center gap-4 bg-destructive/20 backdrop-blur-sm border border-destructive/30 p-6 rounded-lg w-full">
               <img 
-                src="./assets/avoid-1-B_jCDA1J.png" 
+                src={getAssetUrl("assets/avoid-1-B_jCDA1J.png")} 
                 alt="不靠蛮力拼命增长" 
                 className="w-80 h-80 rounded-lg object-cover" 
               />
@@ -360,7 +366,7 @@ export default function App() {
             {/* Card Benefit */}
             <div className="flex flex-col items-center gap-4 bg-primary-foreground/10 backdrop-blur-sm border border-accent/30 p-6 rounded-lg w-full">
               <img 
-                src="./assets/benefit-1-Cxe8rXEd.png" 
+                src={getAssetUrl("assets/benefit-1-Cxe8rXEd.png")} 
                 alt="靠策略，让努力有方向" 
                 className="w-80 h-80 rounded-lg object-cover" 
               />
@@ -401,8 +407,8 @@ export default function App() {
       {/* ── 4. OK SECTION: 能解决什么 ── */}
       <section className="relative py-16 md:py-24 bg-gradient-to-br from-secondary to-secondary/90">
         <div 
-          className="absolute inset-0 opacity-5 bg-cover bg-center"
-          style={{ backgroundImage: 'url(./assets/capability-1-7u4pQpTX.png)' }}
+          className="absolute inset-0 opacity-20 bg-cover bg-center"
+          style={{ backgroundImage: `url(${getAssetUrl("assets/capability-1-7u4pQpTX.png")})` }}
         />
         
         <div className="relative z-10 container px-4 max-w-4xl mx-auto space-y-12">
@@ -494,9 +500,9 @@ export default function App() {
               
               <div className="flex flex-col items-center gap-8 max-w-xl mx-auto">
                 {[
-                  { text: "看懂趋势的判断力", image: "./assets/capability-1-7u4pQpTX.png" },
-                  { text: "找出关键问题的洞察力", image: "./assets/capability-2-BJq1KBdl.png" },
-                  { text: "制定并落地增长方案的底气", image: "./assets/capability-3-Dy69MBie.png" }
+                  { text: "看懂趋势的判断力", image: getAssetUrl("assets/capability-1-7u4pQpTX.png") },
+                  { text: "找出关键问题的洞察力", image: getAssetUrl("assets/capability-2-BJq1KBdl.png") },
+                  { text: "制定并落地增长方案的底气", image: getAssetUrl("assets/capability-3-Dy69MBie.png") }
                 ].map((n, r) => (
                   <div key={r} className="flex flex-col items-center gap-4 w-full">
                     <img 
@@ -545,8 +551,8 @@ export default function App() {
         className="relative py-16 md:py-24 bg-gradient-to-br from-secondary to-secondary/90"
       >
         <div 
-          className="absolute inset-0 opacity-5 bg-cover bg-center"
-          style={{ backgroundImage: 'url(./assets/leverage-pattern-tTCXtwN8.jpg)' }}
+          className="absolute inset-0 opacity-20 bg-cover bg-center"
+          style={{ backgroundImage: `url(${getAssetUrl("assets/leverage-pattern-tTCXtwN8.jpg")})` }}
         />
         
         <div className="container px-4 relative z-10 max-w-4xl mx-auto">
@@ -606,7 +612,7 @@ export default function App() {
         className="py-16 md:py-24 relative overflow-hidden"
       >
         <div className="absolute inset-0">
-          <img src="./assets/who-should-join-bg-Cu7hM2ML.jpg" alt="" className="w-full h-full object-cover" />
+          <img src={getAssetUrl("assets/who-should-join-bg-Cu7hM2ML.jpg")} alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/80 to-black/85" />
         </div>
         
@@ -784,10 +790,10 @@ export default function App() {
 
           <div className="grid grid-cols-1 gap-4 max-w-xl mx-auto">
             {[
-              { image: "./assets/testimonial-new-1-Ba4DU2nx.png", alt: "学员见证 - 综合成功案例展示" },
-              { image: "./assets/testimonial-new-2-BEDuotJW.png", alt: "学员见证 - ROI提升成功案例" },
-              { image: "./assets/testimonial-new-3-Bg84uJL_.png", alt: "学员见证 - 800%业绩增长" },
-              { image: "./assets/testimonial-new-4-B1rZbWfb.png", alt: "学员见证 - 600%销售提升" }
+              { image: getAssetUrl("assets/testimonial-new-1-Ba4DU2nx.png"), alt: "学员见证 - 综合成功案例展示" },
+              { image: getAssetUrl("assets/testimonial-new-2-BEDuotJW.png"), alt: "学员见证 - ROI提升成功案例" },
+              { image: getAssetUrl("assets/testimonial-new-3-Bg84uJL_.png"), alt: "学员见证 - 800%业绩增长" },
+              { image: getAssetUrl("assets/testimonial-new-4-B1rZbWfb.png"), alt: "学员见证 - 600%销售提升" }
             ].map((item, idx) => (
               <div 
                 key={idx} 
@@ -822,7 +828,7 @@ export default function App() {
             </h2>
             <div className="max-w-4xl mx-auto">
               <img 
-                src="./assets/hero-instructor-updated-D8zo6JTK.png" 
+                src={getAssetUrl("assets/hero-instructor-updated-D8zo6JTK.png")} 
                 alt="Ryan Lim - Marketing Director" 
                 className="w-full h-auto rounded-2xl shadow-2xl border border-[hsl(220_13%_26%)]" 
               />
@@ -837,13 +843,13 @@ export default function App() {
             </h2>
             <ImageCarousel 
               images={[
-                './assets/award-new-1-C3Y2cp_f.png',
-                './assets/award-new-2-BpMC7iD1.png',
-                './assets/award-new-3-BTWH93N1.png',
-                './assets/award-new-4-BfK9GSpp.png',
-                './assets/award-new-5-B5hF7GYR.png',
-                './assets/award-new-6-pgimpSB3.png',
-                './assets/award-new-7-8hRPMg1x.png'
+                getAssetUrl("assets/award-new-1-C3Y2cp_f.png"),
+                getAssetUrl("assets/award-new-2-BpMC7iD1.png"),
+                getAssetUrl("assets/award-new-3-BTWH93N1.png"),
+                getAssetUrl("assets/award-new-4-BfK9GSpp.png"),
+                getAssetUrl("assets/award-new-5-B5hF7GYR.png"),
+                getAssetUrl("assets/award-new-6-pgimpSB3.png"),
+                getAssetUrl("assets/award-new-7-8hRPMg1x.png")
               ]} 
               desktopSlides={3} 
             />
@@ -857,16 +863,16 @@ export default function App() {
             </h2>
             <ImageCarousel 
               images={[
-                './assets/experience-1-new-aYy-fgNY.png',
-                './assets/experience-2-new-DZ2jgsRw.png',
-                './assets/experience-3-CAbq5sOX.png',
-                './assets/experience-4-SUVlcIyy.png',
-                './assets/experience-5-Pfje2xCr.png',
-                './assets/experience-6-Cq7ajyVF.png',
-                './assets/experience-7-IzWGSBgF.png',
-                './assets/experience-8-BKA8DXfR.png',
-                './assets/experience-9-BDn9UQ1d.png',
-                './assets/experience-10-DoycUaE0.png'
+                getAssetUrl("assets/experience-1-new-aYy-fgNY.png"),
+                getAssetUrl("assets/experience-2-new-DZ2jgsRw.png"),
+                getAssetUrl("assets/experience-3-CAbq5sOX.png"),
+                getAssetUrl("assets/experience-4-SUVlcIyy.png"),
+                getAssetUrl("assets/experience-5-Pfje2xCr.png"),
+                getAssetUrl("assets/experience-6-Cq7ajyVF.png"),
+                getAssetUrl("assets/experience-7-IzWGSBgF.png"),
+                getAssetUrl("assets/experience-8-BKA8DXfR.png"),
+                getAssetUrl("assets/experience-9-BDn9UQ1d.png"),
+                getAssetUrl("assets/experience-10-DoycUaE0.png")
               ]} 
               desktopSlides={3} 
             />
@@ -879,10 +885,10 @@ export default function App() {
             </h2>
             <ImageCarousel 
               images={[
-                './assets/media-1-CS7KlS13.jpg',
-                './assets/media-2-s1IZhFdT.jpg',
-                './assets/media-3-C_kEueQm.jpg',
-                './assets/media-coverage-Ce1TFezg.png'
+                getAssetUrl("assets/media-1-CS7KlS13.jpg"),
+                getAssetUrl("assets/media-2-s1IZhFdT.jpg"),
+                getAssetUrl("assets/media-3-C_kEueQm.jpg"),
+                getAssetUrl("assets/media-coverage-Ce1TFezg.png")
               ]} 
               desktopSlides={3} 
               hasLogoStyle={true}
@@ -891,7 +897,7 @@ export default function App() {
             {/* HRDC Certified badges */}
             <div className="w-full max-w-2xl mx-auto mt-8 text-center space-y-4">
               <img 
-                src="./assets/hrdc-logo-CsenaheX.png" 
+                src={getAssetUrl("assets/hrdc-logo-CsenaheX.png")} 
                 alt="HRDC Certified" 
                 className="w-full max-w-md h-auto mx-auto object-contain bg-white/5 p-4 rounded-xl border border-white/10" 
               />
