@@ -923,7 +923,7 @@ export default function App() {
         <div 
           className="absolute inset-0"
           style={{ 
-            backgroundImage: 'url(./assets/faq-bg-BdueriB7.jpg)',
+            backgroundImage: `url(${getAssetUrl("assets/faq-bg-BdueriB7.jpg")})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
