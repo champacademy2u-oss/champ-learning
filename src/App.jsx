@@ -275,7 +275,7 @@ function RegisterForm() {
         <input
           type="text" name="name" value={form.name} onChange={handleChange} required
           placeholder="请输入您的姓名"
-          className="w-full px-4 py-3 rounded-lg text-black font-bold placeholder:text-gray-500 outline-none bg-white border-2 border-slate-300 focus:border-amber-500 transition-all h-12"
+          className="w-full px-4 py-3 rounded-lg text-black font-bold placeholder:text-gray-500 outline-none bg-white border-2 border-slate-300 focus:border-amber-500 transition-all h-12 force-black-text"
         />
       </div>
       <div>
@@ -283,7 +283,7 @@ function RegisterForm() {
         <input
           type="email" name="email" value={form.email} onChange={handleChange} required
           placeholder="example@email.com"
-          className="w-full px-4 py-3 rounded-lg text-black font-bold placeholder:text-gray-500 outline-none bg-white border-2 border-slate-300 focus:border-amber-500 transition-all h-12"
+          className="w-full px-4 py-3 rounded-lg text-black font-bold placeholder:text-gray-500 outline-none bg-white border-2 border-slate-300 focus:border-amber-500 transition-all h-12 force-black-text"
         />
       </div>
       <div>
@@ -291,14 +291,14 @@ function RegisterForm() {
         <input
           type="tel" name="phone" value={form.phone} onChange={handleChange} required
           placeholder="+60 12-345 6789"
-          className="w-full px-4 py-3 rounded-lg text-black font-bold placeholder:text-gray-500 outline-none bg-white border-2 border-slate-300 focus:border-amber-500 transition-all h-12"
+          className="w-full px-4 py-3 rounded-lg text-black font-bold placeholder:text-gray-500 outline-none bg-white border-2 border-slate-300 focus:border-amber-500 transition-all h-12 force-black-text"
         />
       </div>
       <div>
         <label className="block text-sm font-semibold text-gray-200 mb-1">州属 State <span className="text-amber-400">*</span></label>
         <select
           name="state" value={form.state} onChange={handleChange} required
-          className="w-full px-4 py-3 rounded-lg text-black font-bold outline-none bg-white border-2 border-slate-300 focus:border-amber-500 transition-all h-12"
+          className="w-full px-4 py-3 rounded-lg text-black font-bold outline-none bg-white border-2 border-slate-300 focus:border-amber-500 transition-all h-12 force-black-text"
         >
           <option value="">请选择您的州属</option>
           {STATE_OPTIONS.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
@@ -310,7 +310,7 @@ function RegisterForm() {
       <button
         type="submit" 
         disabled={status === 'submitting'}
-        className="w-full py-4 rounded-xl font-extrabold text-lg text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl disabled:opacity-60 disabled:cursor-not-allowed bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 border-[3px] border-yellow-200 shadow-amber-500/20 shadow-lg mt-4 cursor-pointer"
+        className="w-full py-4 rounded-xl font-extrabold text-lg text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl disabled:opacity-60 disabled:cursor-not-allowed bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 border-[3px] border-yellow-200 shadow-amber-500/20 shadow-lg mt-4 cursor-pointer force-gold-btn"
       >
         {status === 'submitting' ? '提交中...' : '👉 立即抢购免费门票 (价值RM388)'}
       </button>
@@ -332,6 +332,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#0d1527] text-white font-sans overflow-x-hidden selection:bg-amber-400 selection:text-black">
+      <style>{`
+        .force-black-text { color: #000000 !important; }
+        .force-gold-btn { 
+          background: linear-gradient(to right, #fbbf24, #facc15, #f59e0b) !important; 
+          color: #000000 !important; 
+          border: 3px solid #fef08a !important; 
+        }
+      `}</style>
       
       {/* Social Proof Toast */}
       <SocialProofToast />
@@ -434,7 +442,7 @@ export default function App() {
 
             <button
               onClick={openModal}
-              className="w-full md:w-4/5 py-4 px-6 rounded-full font-black text-xl text-black bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 border-[3px] border-yellow-200 hover:scale-105 transition-all shadow-xl shadow-amber-500/25 animate-bounce-gentle cursor-pointer"
+              className="w-full md:w-4/5 py-4 px-6 rounded-full font-black text-xl text-black bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 border-[3px] border-yellow-200 hover:scale-105 transition-all shadow-xl shadow-amber-500/25 animate-bounce-gentle cursor-pointer force-gold-btn"
             >
               👉 立即抢购免费门票
             </button>
@@ -810,7 +818,7 @@ export default function App() {
         </div>
         <button
           onClick={openModal}
-          className="w-full sm:w-auto px-6 py-2.5 rounded-full font-black text-sm md:text-base text-black bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 border-2 border-yellow-200 hover:scale-105 transition-all shadow-lg shadow-amber-500/20 cursor-pointer"
+          className="w-full sm:w-auto px-6 py-2.5 rounded-full font-black text-sm md:text-base text-black bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 border-2 border-yellow-200 hover:scale-105 transition-all shadow-lg shadow-amber-500/20 cursor-pointer force-gold-btn"
         >
           👉 立即抢购免费门票 (RM0)
         </button>
