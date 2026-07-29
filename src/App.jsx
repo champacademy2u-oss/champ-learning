@@ -335,9 +335,9 @@ export default function App() {
       <style>{`
         .force-black-text { color: #000000 !important; }
         .force-gold-btn { 
-          background: linear-gradient(to right, #fbbf24, #facc15, #f59e0b) !important; 
-          color: #000000 !important; 
-          border: 3px solid #fef08a !important; 
+          background: #000000 !important; 
+          color: #fbbf24 !important; 
+          border: 3px solid #fbbf24 !important; 
         }
       `}</style>
       
