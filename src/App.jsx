@@ -335,7 +335,7 @@ export default function App() {
       <style>{`
         .force-black-text { color: #000000 !important; }
         .force-gold-btn { 
-          background: #000000 !important; 
+          background: transparent !important; 
           color: #fbbf24 !important; 
           border: 3px solid #fbbf24 !important; 
         }
