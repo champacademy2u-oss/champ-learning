@@ -487,7 +487,7 @@ export default function App() {
             <div className="flex flex-col items-center justify-center">
               <div className="relative rounded-2xl overflow-hidden border-2 border-amber-500/40 shadow-2xl">
                 <img 
-                  src={getAssetUrl("assets/hero-instructor-updated-D8zo6JTK.png")} 
+                  src={getAssetUrl("assets/hero-instructor-black-v2.png")} 
                   alt="Ryan Lim 教练" 
                   className="w-full h-auto object-cover max-w-md"
                 />
