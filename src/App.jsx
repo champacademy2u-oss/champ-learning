@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { db } from './firebase'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
 const getAssetUrl = (path) => {
   if (!path) return path;
@@ -225,6 +227,17 @@ function RegisterForm() {
           state: form.state
         }),
       })
+      
+      // Save to Firebase preview_leads collection
+      await addDoc(collection(db, 'preview_leads'), {
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        state: form.state,
+        createdAt: serverTimestamp(),
+        source: 'Champ Learning Landing Page'
+      })
+
       setStatus('success')
       setShowSuccess(true)
     } catch {
