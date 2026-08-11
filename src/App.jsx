@@ -392,7 +392,38 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── 2. WHAT YOU WILL LEARN (在课程里，你将会学到) ── */}
+      {/* ── 2. COURSE PREVIEW VIDEO ── */}
+      <section className="py-16 md:py-20 bg-slate-950 border-b border-slate-800 px-4">
+        <div className="max-w-5xl mx-auto text-center space-y-8">
+          <div className="space-y-3">
+            <span className="inline-block rounded-full border border-amber-400/40 bg-amber-400/10 px-4 py-1.5 text-xs font-bold tracking-wider text-amber-400">
+              MONEY MACHINE 课程预览
+            </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white">
+              先看 Ryan Lim 军师怎么说
+            </h2>
+            <p className="max-w-2xl mx-auto text-gray-300">
+              用几分钟了解为什么企业不能只追求业绩，更要建立一套能够持续创造利润的赚钱系统。
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto overflow-hidden rounded-2xl border-2 border-amber-500/40 bg-black shadow-2xl">
+            <video
+              className="block w-full max-h-[80vh] bg-black object-contain"
+              controls
+              playsInline
+              preload="metadata"
+              poster={getAssetUrl("assets/money-machine-preview-poster.png")}
+              aria-label="打造企业赚钱机器 Preview 课程介绍视频"
+            >
+              <source src={getAssetUrl("assets/money-machine-preview-video.mp4")} type="video/mp4" />
+              您的浏览器暂不支持播放此视频。
+            </video>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 3. WHAT YOU WILL LEARN (在课程里，你将会学到) ── */}
       <section 
         className="py-16 md:py-24 border-b border-slate-800 relative bg-cover bg-center"
         style={{ backgroundImage: `linear-gradient(rgba(10, 17, 30, 0.95), rgba(10, 17, 30, 0.95)), url(${getAssetUrl("assets/leverage-pattern-tTCXtwN8.jpg")})` }}
