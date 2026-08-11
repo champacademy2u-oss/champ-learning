@@ -8,10 +8,15 @@ const getAssetUrl = (path) => {
   return `${import.meta.env.BASE_URL}${cleanPath}`;
 };
 
-const WHATSAPP_LINK = 'https://wa.me/60123456789?text=%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E6%9C%89%E5%85%B4%E8%B6%A3%E5%8F%82%E5%8A%A0%E3%80%90%E4%BC%81%E4%B8%9A%E6%89%93%E9%80%A0%E8%B5%9A%E9%92%B1%E6%9C%BA%E5%99%A8%E3%80%91%EF%BC%8C%E6%83%B3%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E8%AF%A6%E6%83%85%E3%80%82'
+const WHATSAPP_LINK = `https://wa.me/601167459987?text=${encodeURIComponent('您好，我有兴趣参加【打造企业赚钱机器 Preview 课程】，想了解更多详情。')}`
 const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbywkS3XXyHoJLNnfcNjPo707vGsK_oYYThl8bNlCTRVEY3X6DOKrZZbXPXUf4pQQMI/exec'
 const FB_GROUP_LINK = 'https://www.facebook.com/groups/champacademy'
-const VIDEO_SRC = 'https://video.wixstatic.com/video/0d678a_1883575fdebb45b0b15b4ca5df37e4b1/1080p/mp4/file.mp4'
+
+const COURSE = {
+  date: '2026年8月28日（星期五）',
+  time: '8:30 PM till Late',
+  venue: '线上 Zoom'
+}
 
 const STATE_OPTIONS = [
   { value: 'johor', label: '柔佛 Johor' },
@@ -32,21 +37,29 @@ const STATE_OPTIONS = [
 ]
 
 const FAQS = [
-  { q: '谁适合参与这个课程？', a: '如果你广告费越来越高、顾客越来越难成交，或者公司发展卡在某个阶段，这场【企业打造赚钱机器】训练营就是为你准备的。' },
-  { q: '请问主讲人是 Ryan 教练吗？', a: '是的，整个 3 个月的 11 堂课都会由 Ryan 教练亲自带领，结合 9000 万广告操盘经验与 150 个行业第一案例，带你实战掌握【打造赚钱机器】。' },
-  { q: '请问在哪里上课？', a: '这是一个线上课程，将通过 Zoom 举行，任何地区的企业主都可以在线参与学习。' },
-  { q: '请问可以看重播吗？', a: '不会提供录影！因为课程内容涉及大量真实案例与最新策略，我们坚持保密，小班制，只对现场学员开放。' },
-  { q: '请问课程几点开始？', a: '课程时间为 8:30 till Late。下一期开课时间：2026年8月20日。' },
-  { q: '请问课程收费多少？', a: '课程原价 RM388。但这次特别开放优惠，Ryan教练送30位免费票🎫！马上报名获取位子（第31位开始收费）。只限100位学员，位子有限！' },
-  { q: '请问报名后，下一步要做什么？', a: '只要填写正确的 Email 与电话号码，你会收到确认通知。这代表你已正式锁定名额，进入【企业打造赚钱机器】。记得把课程时间记好，务必全程出席！' }
+  { q: '谁适合参与这个 Preview 课程？', a: '适合想让企业有业绩也有盈利的老板、创业者、营销负责人，以及正面对获客成本高、价格战、成交率低、复购不足或利润被成本压缩的团队。' },
+  { q: '请问主讲人是 Ryan Lim 军师吗？', a: '是的，这场 Preview 课程由 Ryan Lim 军师主讲，分享如何从定位、产品价值、营销获客、成交交付到成本利润，建立企业赚钱系统。' },
+  { q: '请问在哪里上课？', a: `课程通过 ${COURSE.venue} 举行，任何地区的企业主都可以在线参与。` },
+  { q: '请问可以看重播吗？', a: '是否提供重播，以课程团队发送的报名确认通知为准。建议预留时间参加 Zoom 直播。' },
+  { q: '请问课程几点开始？', a: `课程日期为 ${COURSE.date}，时间为 ${COURSE.time}。` },
+  { q: '请问课程收费多少？', a: '本页面用于登记 Preview 课程席位；如有费用或名额安排，请以课程团队的最新确认通知为准。' },
+  { q: '请问报名后，下一步要做什么？', a: `填写正确的 Email 与电话号码后，课程团队会联系您确认席位与 Zoom 参与方式。请先记下 ${COURSE.date}、${COURSE.time}。` }
 ]
 
-const SOCIAL_PROOFS = [
-  { name: 'Tan 先生', location: '雪兰莪', time: '1分钟前' },
-  { name: '陈总', location: '吉隆坡', time: '2分钟前' },
-  { name: 'Lim 女士', location: '槟城', time: '4分钟前' },
-  { name: 'Wong 总', location: '柔佛', time: '5分钟前' },
-  { name: '张老板', location: '霹雳', time: '7分钟前' }
+const WHAT_TO_DO = [
+  ['精准定位目标客户', '吸引高价值客户'],
+  ['打造有价值的产品／服务', '解决客户痛点'],
+  ['建立高效营销系统', '持续获客，稳定流量'],
+  ['优化成交与交付流程', '提升客户体验，创造口碑推荐'],
+  ['精细化成本与财务管理', '控制成本，提高利润率']
+]
+
+const WHAT_TO_AVOID = [
+  ['盲目追求所有客户', '定位不精准，获客成本高'],
+  ['产品／服务没有差异化', '陷入价格战，利润被压缩'],
+  ['只做流量，不做转化', '浪费时间和金钱'],
+  ['服务不到位', '客户流失，没有复购'],
+  ['不控制成本', '赚到的都变成了开销']
 ]
 
 function useWindowSize() {
@@ -58,82 +71,6 @@ function useWindowSize() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
   return width
-}
-
-function SocialProofToast() {
-  const [currentProof, setCurrentProof] = useState(null)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const showRandomToast = () => {
-      const randomItem = SOCIAL_PROOFS[Math.floor(Math.random() * SOCIAL_PROOFS.length)]
-      setCurrentProof(randomItem)
-      setVisible(true)
-      setTimeout(() => setVisible(false), 4500)
-    }
-
-    const initialTimer = setTimeout(showRandomToast, 3000)
-    const interval = setInterval(showRandomToast, 12000)
-
-    return () => {
-      clearTimeout(initialTimer)
-      clearInterval(interval)
-    }
-  }, [])
-
-  if (!currentProof || !visible) return null
-
-  return (
-    <div className="fixed bottom-20 left-4 z-50 animate-fade-in-up">
-      <div className="bg-slate-900/95 border border-amber-500/50 text-white p-3 rounded-2xl shadow-2xl backdrop-blur-md flex items-center gap-3 max-w-xs">
-        <div className="w-10 h-10 rounded-full bg-amber-400/20 text-amber-400 border border-amber-400/40 flex items-center justify-center font-bold text-lg shrink-0">
-          ⚡
-        </div>
-        <div className="text-xs space-y-0.5">
-          <p className="font-bold text-amber-300">
-            来自 <span className="text-white">{currentProof.location}</span> 的 <span className="text-white">{currentProof.name}</span>
-          </p>
-          <p className="text-gray-300">刚刚抢购了免费门票！</p>
-          <span className="text-[10px] text-amber-400/80 font-medium">{currentProof.time}</span>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function CountdownTimer() {
-  const [timeLeft, setTimeLeft] = useState({ hours: 14, minutes: 28, seconds: 45 })
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 }
-        if (prev.minutes > 0) return { ...prev, minutes: 59, seconds: 59 }
-        if (prev.hours > 0) return { hours: prev.hours - 1, minutes: 59, seconds: 59 }
-        return prev
-      })
-    }, 1000)
-    return () => clearInterval(timer)
-  }, [])
-
-  return (
-    <div className="flex justify-center items-center gap-2 md:gap-4 my-3 text-white">
-      <div className="flex flex-col items-center bg-black/60 border border-amber-500/40 px-3 py-2 rounded-lg min-w-[60px]">
-        <span className="text-xl md:text-3xl font-black text-amber-400">{String(timeLeft.hours).padStart(2, '0')}</span>
-        <span className="text-[10px] md:text-xs text-gray-300 uppercase font-semibold">Hours</span>
-      </div>
-      <span className="text-xl md:text-2xl font-bold text-amber-400">:</span>
-      <div className="flex flex-col items-center bg-black/60 border border-amber-500/40 px-3 py-2 rounded-lg min-w-[60px]">
-        <span className="text-xl md:text-3xl font-black text-amber-400">{String(timeLeft.minutes).padStart(2, '0')}</span>
-        <span className="text-[10px] md:text-xs text-gray-300 uppercase font-semibold">Minutes</span>
-      </div>
-      <span className="text-xl md:text-2xl font-bold text-amber-400">:</span>
-      <div className="flex flex-col items-center bg-black/60 border border-amber-500/40 px-3 py-2 rounded-lg min-w-[60px]">
-        <span className="text-xl md:text-3xl font-black text-amber-400">{String(timeLeft.seconds).padStart(2, '0')}</span>
-        <span className="text-[10px] md:text-xs text-gray-300 uppercase font-semibold">Seconds</span>
-      </div>
-    </div>
-  )
 }
 
 function ImageCarousel({ images, desktopSlides = 3, autoplayDelay = 2000, hasLogoStyle = false }) {
@@ -235,7 +172,7 @@ function RegisterForm() {
         phone: form.phone,
         state: form.state,
         createdAt: serverTimestamp(),
-        source: 'Champ Learning Landing Page'
+        source: 'Money Machine Preview Course Landing Page'
       })
 
       setStatus('success')
@@ -312,7 +249,7 @@ function RegisterForm() {
         disabled={status === 'submitting'}
         className="w-full py-4 rounded-xl font-extrabold text-lg text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl disabled:opacity-60 disabled:cursor-not-allowed bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 border-[3px] border-yellow-200 shadow-amber-500/20 shadow-lg mt-4 cursor-pointer force-gold-btn"
       >
-        {status === 'submitting' ? '提交中...' : '👉 立即抢购免费门票 (价值RM388)'}
+        {status === 'submitting' ? '提交中...' : '👉 提交 Preview 课程报名'}
       </button>
       <div className="flex items-center justify-center gap-2 text-gray-400 text-xs text-center pt-1">
         <span>🔒 256-bit SSL 官方加密</span>
@@ -341,9 +278,6 @@ export default function App() {
         }
       `}</style>
       
-      {/* Social Proof Toast */}
-      <SocialProofToast />
-
       {/* Floating WhatsApp Widget */}
       <a
         href={WHATSAPP_LINK}
@@ -365,10 +299,10 @@ export default function App() {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2 text-amber-400 font-bold text-sm md:text-base">
             <span className="inline-block w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
-            【ChampAcademy 官方特惠】送出 30 张免费限量名额！
+            【ChampAcademy Preview 课程】打造企业赚钱机器
           </div>
           <div className="text-gray-300 text-xs md:text-sm">
-            开课日期：<span className="text-white font-semibold">2026年8月20日</span> | 8:30 PM till Late (Zoom Live)
+            {COURSE.date} | {COURSE.time}（{COURSE.venue}）
           </div>
         </div>
       </header>
@@ -381,72 +315,78 @@ export default function App() {
         <div className="max-w-5xl mx-auto px-4 text-center space-y-6">
           
           <div className="inline-block bg-amber-400/10 border border-amber-400/40 text-amber-400 px-5 py-1.5 rounded-full text-xs md:text-sm font-bold tracking-wider">
-            ★ 全马首屈一指实战企业营销训练营 ★
+            ★ 打造 Money Machine · 企业赚钱机器 Preview 课程 ★
           </div>
 
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            只需要3个月，让你的企业拥有一套
+            不是有业绩没盈利，
+            <span className="block">而是有业绩又有盈利！</span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 mt-2">
-              「流量 × 成交 × 复购 × 裂变」自动赚钱系统
+              打造企业赚钱机器
             </span>
           </h1>
 
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto font-medium">
-            不靠砸大钱打广告，不靠团队拼命加加班！教你用策略与杠杆模式打造自动盈利机器。
+            战略＝战（什么该做）＋略（什么不该做）。做对战略选择，让生意自动为你赚钱。
           </p>
 
-          {/* Video or Instructor Highlight */}
+          {/* Official course visual supplied by the course owner */}
           <div className="max-w-3xl mx-auto my-6 rounded-2xl overflow-hidden shadow-2xl border-2 border-amber-500/40 bg-black">
-            <video 
-              className="w-full rounded-2xl" 
-              controls 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-            >
-              <source src={VIDEO_SRC} type="video/mp4" />
-            </video>
+            <img
+              src={getAssetUrl("assets/money-machine-preview-poster.png")}
+              alt="打造企业赚钱机器 Preview 课程海报"
+              className="w-full h-auto"
+            />
           </div>
 
           {/* Key Metrics Counter Strip (Professional Proof Banner) */}
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 py-4 text-center">
             <div className="bg-slate-900/80 border border-amber-500/30 p-3 rounded-xl">
-              <div className="text-xl md:text-2xl font-black text-amber-400">90,000,000+</div>
+              <div className="text-xl md:text-2xl font-black text-amber-400">9000万+</div>
               <div className="text-xs text-gray-300 font-medium">广告费实战操盘</div>
             </div>
             <div className="bg-slate-900/80 border border-amber-500/30 p-3 rounded-xl">
-              <div className="text-xl md:text-2xl font-black text-amber-400">150+</div>
-              <div className="text-xs text-gray-300 font-medium">行业第一成功案例</div>
+              <div className="text-xl md:text-2xl font-black text-amber-400">100家+</div>
+              <div className="text-xs text-gray-300 font-medium">行业第一</div>
             </div>
             <div className="bg-slate-900/80 border border-amber-500/30 p-3 rounded-xl">
-              <div className="text-xl md:text-2xl font-black text-amber-400">99.4%</div>
-              <div className="text-xs text-gray-300 font-medium">学员好评满度</div>
+              <div className="text-xl md:text-2xl font-black text-amber-400">100万+</div>
+              <div className="text-xs text-gray-300 font-medium">FB 专业版主</div>
             </div>
             <div className="bg-slate-900/80 border border-amber-500/30 p-3 rounded-xl">
-              <div className="text-xl md:text-2xl font-black text-amber-400">100%</div>
-              <div className="text-xs text-gray-300 font-medium">HRDC 官方可报销</div>
+              <div className="text-xl md:text-2xl font-black text-amber-400">15亿</div>
+              <div className="text-xs text-gray-300 font-medium">10大案例总业绩高达</div>
             </div>
           </div>
 
-          {/* Pricing Box - Styled after SmartFinancing SF template price banner */}
+          {/* Course details */}
           <div className="max-w-2xl mx-auto bg-gradient-to-b from-slate-900/90 to-slate-950/90 border-2 border-amber-500/50 p-6 rounded-2xl shadow-xl space-y-4">
-            <div className="text-gray-400 text-lg font-semibold">
-              课程原价：<strike className="text-red-400 text-xl font-bold">RM 388</strike>
-            </div>
             <div className="text-2xl md:text-4xl font-extrabold text-amber-400">
-              🎁 现在特惠：首30位学员免费参与！
+              长青稳定 · 成交一次，收益一世
             </div>
-            
-            <CountdownTimer />
+
+            <div className="grid sm:grid-cols-3 gap-3 text-left">
+              <div className="rounded-xl border border-slate-700 bg-black/30 p-4">
+                <div className="text-xs text-gray-400">日期</div>
+                <div className="mt-1 font-bold text-white">{COURSE.date}</div>
+              </div>
+              <div className="rounded-xl border border-slate-700 bg-black/30 p-4">
+                <div className="text-xs text-gray-400">时间</div>
+                <div className="mt-1 font-bold text-white">{COURSE.time}</div>
+              </div>
+              <div className="rounded-xl border border-slate-700 bg-black/30 p-4">
+                <div className="text-xs text-gray-400">地点</div>
+                <div className="mt-1 font-bold text-white">{COURSE.venue}</div>
+              </div>
+            </div>
 
             <button
               onClick={openModal}
               className="w-full md:w-4/5 py-4 px-6 rounded-full font-black text-xl text-black bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 border-[3px] border-yellow-200 hover:scale-105 transition-all shadow-xl shadow-amber-500/25 animate-bounce-gentle cursor-pointer force-gold-btn"
             >
-              👉 立即抢购免费门票
+              👉 立即报名 Preview 课程
             </button>
-            <p className="text-xs text-amber-300/80 font-medium">【一旦超过30位指定人数，课程将恢复原价 RM 388】</p>
+            <p className="text-xs text-amber-300/80 font-medium">建立你的赚钱系统，让企业自动化运转，业绩与利润持续增长。</p>
           </div>
 
         </div>
@@ -457,47 +397,44 @@ export default function App() {
         className="py-16 md:py-24 border-b border-slate-800 relative bg-cover bg-center"
         style={{ backgroundImage: `linear-gradient(rgba(10, 17, 30, 0.95), rgba(10, 17, 30, 0.95)), url(${getAssetUrl("assets/leverage-pattern-tTCXtwN8.jpg")})` }}
       >
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            
-            <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-extrabold text-amber-400 border-l-4 border-amber-400 pl-4">
-                在课程里，你将会学到：
-              </h2>
-              
-              <ul className="space-y-4 text-base md:text-lg text-gray-200">
-                {[
-                  "如何拆解【打造赚钱机器核心思维】：用同等资源放大10倍结果",
-                  "如何根据公司阶段（100K / 300K / 1M / 5M+）设计商业模式",
-                  "如何设定精准受众与预算，避免无效广告消耗",
-                  "如何通过“收网”把广告点击转化为实际成交与高复购",
-                  "如何锁定精确增长节点与闭环流量链设计",
-                  "如何打造24小时自动运行的内容获客资产",
-                  "如何操作多维度混合媒介矩阵（混合图文、多组短视频、高频直营）",
-                  "如何构建能独立运行的获客与跟进团队系统，解放创始人时间"
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 bg-slate-900/60 p-3 rounded-lg border border-slate-800">
-                    <span className="text-2xl shrink-0">💡</span>
-                    <span className="font-semibold pt-0.5">{item}</span>
+        <div className="max-w-5xl mx-auto px-4 space-y-10">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-amber-400">
+              战略＝战（什么该做）＋略（什么不该做）
+            </h2>
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+              Preview 课程带你先看清正确选择，再把定位、价值、获客、成交、交付与利润串成一套赚钱系统。
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
+            <div className="bg-slate-900/80 border-2 border-amber-500/50 rounded-2xl overflow-hidden shadow-2xl">
+              <h3 className="bg-gradient-to-r from-amber-500 to-yellow-500 px-6 py-4 text-2xl font-black text-black">
+                什么该做（战）✓
+              </h3>
+              <ul className="space-y-3 p-6 text-gray-200">
+                {WHAT_TO_DO.map(([title, detail]) => (
+                  <li key={title} className="rounded-xl border border-slate-700 bg-black/30 p-4">
+                    <div className="font-bold text-white">{title}</div>
+                    <div className="mt-1 text-sm text-gray-400">{detail}</div>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="flex flex-col items-center justify-center">
-              <div className="relative rounded-2xl overflow-hidden border-2 border-amber-500/40 shadow-2xl">
-                <img 
-                  src={getAssetUrl("assets/hero-instructor-black-v2.png")} 
-                  alt="Ryan Lim 教练" 
-                  className="w-full h-auto object-cover max-w-md"
-                />
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 p-4 text-center">
-                  <span className="text-amber-400 font-extrabold text-lg">主讲导师：Ryan Lim 教练</span>
-                  <p className="text-gray-300 text-xs">百家领头企业最信赖 FB 营销军师</p>
-                </div>
-              </div>
+            <div className="bg-slate-900/80 border-2 border-amber-500/30 rounded-2xl overflow-hidden shadow-2xl">
+              <h3 className="bg-slate-950 px-6 py-4 text-2xl font-black text-amber-400 border-b border-amber-500/30">
+                什么不该做（略）✕
+              </h3>
+              <ul className="space-y-3 p-6 text-gray-200">
+                {WHAT_TO_AVOID.map(([title, detail]) => (
+                  <li key={title} className="rounded-xl border border-slate-700 bg-black/30 p-4">
+                    <div className="font-bold text-white">{title}</div>
+                    <div className="mt-1 text-sm text-gray-400">{detail}</div>
+                  </li>
+                ))}
+              </ul>
             </div>
-
           </div>
         </div>
       </section>
@@ -511,10 +448,10 @@ export default function App() {
           
           <div className="space-y-4">
             <h2 className="text-3xl md:text-5xl font-extrabold text-amber-400">
-              Ryan Lim 教练 荣获了
+              主讲导师：Ryan Lim 军师
             </h2>
             <p className="text-xl md:text-2xl text-white font-bold">
-              🏆 9次 国际奖项得主（6次由国家总统/首相亲颁）
+              上市公司 Marketing 操盘手 / Marketing Director
             </p>
           </div>
 
@@ -538,11 +475,10 @@ export default function App() {
                 🚀 实战经验与操盘纪录
               </h3>
               <ul className="space-y-2 text-gray-200 text-sm md:text-base">
-                <li>• 操盘超过 9000万 广告费实战经验</li>
-                <li>• 拥有百万粉丝专页官方版主与运营者</li>
-                <li>• 帮助超过 100+ 企业实现 100K - 5M+ 业绩突破</li>
-                <li>• 唯一获美国知名国际媒体专题报道的营销专家</li>
-                <li>• HRDF 认证培训师 & HRDC Claimable 官方资格</li>
+                <li>• 9000万+ 广告费经验</li>
+                <li>• 100家+ 行业第一</li>
+                <li>• 100万+ FB 专业版主</li>
+                <li>• 10大成功案例，总业绩高达15亿</li>
               </ul>
             </div>
           </div>
@@ -607,16 +543,16 @@ export default function App() {
       <section className="py-12 bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 text-black text-center px-4">
         <div className="max-w-4xl mx-auto space-y-4">
           <h2 className="text-2xl md:text-4xl font-black">
-            原价 <strike className="opacity-75">RM 388</strike> ，现在只需免费报名！
+            建立你的赚钱系统，让企业自动化运转
           </h2>
           <p className="text-base md:text-lg font-bold">
-            只限前30位免费名额，先到先得！
+            做好战略选择，让业绩与利润持续增长。
           </p>
           <button 
             onClick={openModal}
             className="px-8 py-3.5 rounded-full font-black text-lg text-white bg-slate-950 hover:bg-slate-900 transition-all shadow-xl hover:scale-105 cursor-pointer"
           >
-            👉 抢先预订免费名额
+            👉 登记 Preview 课程席位
           </button>
         </div>
       </section>
@@ -633,16 +569,17 @@ export default function App() {
               什么人适合参加？
             </h2>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              如果你符合以下任何一种情况，这场训练营将为你带来突破性的改变！
+              如果你的企业正在面对以下问题，这场 Preview 课程正是为你准备的。
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              "企业老板 / 创业者：想突破现阶段瓶颈，让生意进入新增长曲线",
-              "中小企业 SME：广告费越来越高，成交越来越低，急需一套可复制的杠杆模式",
-              "营销 / 销售主管：想掌握一套系统化战略，带领团队高效执行",
-              "已有专页 / 广告经验者：想从“会投广告”升级到“能整合系统、放大结果”"
+              "客户定位不够精准，获客成本越来越高",
+              "产品或服务缺少差异化，长期陷入价格战",
+              "有流量却没有转化，投入时间和预算看不到回报",
+              "成交与交付流程不稳定，客户没有复购与推荐",
+              "营收看似增长，利润却不断被成本与开销压缩"
             ].map((item, idx) => (
               <div key={idx} className="bg-slate-900/80 border border-slate-800 p-6 rounded-xl flex items-start gap-4">
                 <span className="text-amber-400 text-2xl font-black">✔</span>
@@ -651,24 +588,18 @@ export default function App() {
             ))}
           </div>
 
-          {/* 海陆空 System Box */}
+          {/* Money machine system path */}
           <div className="bg-slate-950 border-2 border-amber-500/40 p-8 rounded-2xl text-center space-y-6">
             <h3 className="text-2xl md:text-3xl font-extrabold text-amber-400">
-              掌握“海·陆·空”全方位增长引擎
+              企业赚钱机器的五个关键环节
             </h3>
-            <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
-              <div className="bg-slate-900 p-4 rounded-xl border border-slate-800">
-                <div className="text-amber-400 font-extrabold text-xl">空</div>
-                <div className="text-gray-300 font-semibold text-sm">线上精准流量</div>
-              </div>
-              <div className="bg-slate-900 p-4 rounded-xl border border-slate-800">
-                <div className="text-amber-400 font-extrabold text-xl">陆</div>
-                <div className="text-gray-300 font-semibold text-sm">内容品牌心智</div>
-              </div>
-              <div className="bg-slate-900 p-4 rounded-xl border border-slate-800">
-                <div className="text-amber-400 font-extrabold text-xl">海</div>
-                <div className="text-gray-300 font-semibold text-sm">高效成交系统</div>
-              </div>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
+              {['精准定位', '价值产品', '营销获客', '成交交付', '成本利润'].map((item, idx) => (
+                <div key={item} className="bg-slate-900 p-4 rounded-xl border border-slate-800">
+                  <div className="text-amber-400 font-extrabold text-xl">{idx + 1}</div>
+                  <div className="text-gray-300 font-semibold text-sm mt-1">{item}</div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -681,10 +612,10 @@ export default function App() {
           
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-5xl font-extrabold text-amber-400">
-              真实学员见证 & 成功案例
+              过往案例与实战展示
             </h2>
             <p className="text-gray-300">
-              看来自不同行业的企业主如何通过“打造赚钱机器”实现数倍业绩暴增！
+              了解 Ryan Lim 军师在不同行业的营销与商业系统实战资料。
             </p>
           </div>
 
@@ -747,17 +678,17 @@ export default function App() {
         <div className="max-w-4xl mx-auto px-4">
           <div className="bg-slate-900/90 border-2 border-amber-500/40 p-8 rounded-3xl space-y-6">
             <h2 className="text-3xl font-extrabold text-amber-400 text-center">
-              Ryan Lim 导师的话：
+              Ryan Lim 军师的话：
             </h2>
             <div className="space-y-4 text-gray-200 text-base md:text-lg leading-relaxed">
               <p>
-                在现今的时代里，很多企业老板想要透过商业系统与FB营销改变现状、突破瓶颈。但往往却因为没有找到正确的策略，导致广告费越来越贵、客户成交越来越难等困扰。
+                很多企业并不是没有业绩，而是有业绩却没有留下利润。问题往往不只是广告或销售技巧，而是缺少一套清楚的战略与可持续运转的系统。
               </p>
               <p>
-                其实，做生意并不需要盲目靠蛮力！只需要懂得运用对的系统和布局来进行有效的放大。因此，为了帮助更多企业主能懂得实战营销知识，做对的系统，Ryan Lim 导师创办了 ChampAcademy 平台。
+                战略，就是清楚知道什么该做，也知道什么不该做。从精准客户、价值产品、稳定获客、成交交付，到成本与利润，每一个环节都要互相配合。
               </p>
               <p>
-                他整合了超过 9000万 广告费操盘实战经验，巧妙地将其转化为独一无二的【企业打造赚钱机器】系统，让更多人在商业增长之旅中占据绝对优势！
+                这场 Preview 课程将带你看见企业赚钱机器的完整框架，帮助你开始建立长青稳定、能够自动化运转的赚钱系统。
               </p>
             </div>
           </div>
@@ -788,10 +719,10 @@ export default function App() {
         <div className="max-w-3xl mx-auto bg-slate-900 border-2 border-amber-500/40 p-8 rounded-3xl shadow-2xl space-y-6">
           <div className="text-center space-y-2">
             <h2 className="text-3xl font-black text-amber-400">
-              填写表格 · 抢占 30 位免费名额
+              填写表格 · 登记 Preview 课程席位
             </h2>
             <p className="text-gray-300 text-sm">
-              只需填写正确资料，我们的课程团队会在 24 小时内确认您的席位
+              {COURSE.date} · {COURSE.time} · {COURSE.venue}；课程团队会联系您确认参与方式。
             </p>
           </div>
           <RegisterForm />
@@ -800,7 +731,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="py-8 bg-slate-950 text-center text-gray-400 text-xs md:text-sm border-t border-slate-800 space-y-2">
-        <p className="font-bold text-white">ChampAcademy - 企业打造赚钱机器</p>
+        <p className="font-bold text-white">ChampAcademy - 打造企业赚钱机器 Preview 课程</p>
         <p>Copyright © {new Date().getFullYear()} ChampAcademy. All rights reserved.</p>
         <p>
           欲知更多详情，请联系：
@@ -813,14 +744,14 @@ export default function App() {
       {/* Floating Bottom Bar (Sticky Mobile Bar) */}
       <div className="fixed bottom-0 inset-x-0 bg-slate-950/95 border-t border-amber-500/40 p-3 z-50 backdrop-blur-md flex items-center justify-between px-4 max-w-5xl mx-auto">
         <div className="hidden sm:flex flex-col">
-          <span className="text-amber-400 font-extrabold text-sm">【企业打造赚钱机器】训练营</span>
-          <span className="text-gray-300 text-xs">首30位免费名额倒数中</span>
+          <span className="text-amber-400 font-extrabold text-sm">【打造企业赚钱机器】Preview 课程</span>
+          <span className="text-gray-300 text-xs">{COURSE.date} · {COURSE.venue}</span>
         </div>
         <button
           onClick={openModal}
           className="w-full sm:w-auto px-6 py-2.5 rounded-full font-black text-sm md:text-base text-black bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 border-2 border-yellow-200 hover:scale-105 transition-all shadow-lg shadow-amber-500/20 cursor-pointer force-gold-btn"
         >
-          👉 立即抢购免费门票 (RM0)
+          👉 立即报名 Preview 课程
         </button>
       </div>
 
@@ -837,13 +768,13 @@ export default function App() {
             
             <div className="text-center space-y-2 mb-6">
               <span className="bg-amber-400/20 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-400/30">
-                限时特惠
+                Preview 课程报名
               </span>
               <h3 className="text-2xl font-extrabold text-amber-400">
-                抢占《企业打造赚钱机器》免费名额
+                登记《打造企业赚钱机器》课程席位
               </h3>
               <p className="text-gray-300 text-xs">
-                请正确填写以下信息，席位确认后将发送 Zoom 直播链接至您的 Email
+                请正确填写以下信息，课程团队会联系您确认席位与 Zoom 参与方式
               </p>
             </div>
 
