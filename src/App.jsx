@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { db } from './firebase'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
@@ -263,9 +263,38 @@ function RegisterForm() {
 export default function App() {
   const [openAccordion, setOpenAccordion] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isPreviewMuted, setIsPreviewMuted] = useState(true)
+  const previewVideoRef = useRef(null)
+
+  useEffect(() => {
+    const video = previewVideoRef.current
+    if (!video || !('IntersectionObserver' in window)) return
+    video.muted = true
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (video.ended) video.currentTime = 0
+        video.play().catch(() => {})
+      } else {
+        video.pause()
+      }
+    }, { threshold: 0.55 })
+
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [])
 
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
+  const enablePreviewSound = () => {
+    const video = previewVideoRef.current
+    if (!video) return
+
+    video.muted = false
+    video.currentTime = 0
+    video.play().catch(() => {})
+    setIsPreviewMuted(false)
+  }
 
   return (
     <div className="min-h-screen bg-[#0d1527] text-white font-sans overflow-x-hidden selection:bg-amber-400 selection:text-black">
@@ -400,25 +429,34 @@ export default function App() {
               MONEY MACHINE 课程预览
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-white">
-              先看 Ryan Lim 军师怎么说
+              先看视频认识我们的 Ryan 军师
             </h2>
-            <p className="max-w-2xl mx-auto text-gray-300">
-              用几分钟了解为什么企业不能只追求业绩，更要建立一套能够持续创造利润的赚钱系统。
-            </p>
           </div>
 
-          <div className="max-w-4xl mx-auto overflow-hidden rounded-2xl border-2 border-amber-500/40 bg-black shadow-2xl">
+          <div className="relative max-w-4xl mx-auto overflow-hidden rounded-2xl border-2 border-amber-500/40 bg-black shadow-2xl">
             <video
-              className="block w-full max-h-[80vh] bg-black object-contain"
+              ref={previewVideoRef}
+              className="block aspect-video w-full max-h-[80vh] bg-black object-contain"
               controls
               playsInline
               preload="metadata"
-              poster={getAssetUrl("assets/money-machine-preview-poster.png")}
-              aria-label="打造企业赚钱机器 Preview 课程介绍视频"
+              onVolumeChange={(event) => setIsPreviewMuted(event.currentTarget.muted || event.currentTarget.volume === 0)}
+              aria-label="认识 Ryan 军师的课程介绍视频"
             >
               <source src={getAssetUrl("assets/money-machine-preview-video.mp4")} type="video/mp4" />
               您的浏览器暂不支持播放此视频。
             </video>
+
+            {isPreviewMuted && (
+              <button
+                type="button"
+                onClick={enablePreviewSound}
+                className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-yellow-200 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 px-6 py-3 text-sm font-black text-black shadow-2xl transition-transform hover:scale-105 md:text-lg"
+                aria-label="开启声音并从头播放视频"
+              >
+                🔊 点击开启声音
+              </button>
+            )}
           </div>
         </div>
       </section>
