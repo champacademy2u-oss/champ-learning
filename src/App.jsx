@@ -1,6 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import { db } from './firebase'
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
 const getAssetUrl = (path) => {
   if (!path) return path;
@@ -152,27 +150,29 @@ function RegisterForm() {
     if (!form.name || !form.email || !form.phone || !form.state) return
     setStatus('submitting')
     try {
+      const submittedAt = new Date().toLocaleString("en-MY", {
+        timeZone: "Asia/Kuala_Lumpur",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      })
+
       await fetch(FORM_ENDPOINT, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        keepalive: true,
         body: JSON.stringify({
-          date: new Date().toLocaleString("en-MY", { timeZone: "Asia/Kuala_Lumpur", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false }),
+          date: submittedAt,
           name: form.name,
           email: form.email,
           phone: form.phone,
           state: form.state
         }),
-      })
-      
-      // Save to Firebase preview_leads collection
-      await addDoc(collection(db, 'preview_leads'), {
-        name: form.name,
-        email: form.email,
-        phone: form.phone,
-        state: form.state,
-        createdAt: serverTimestamp(),
-        source: 'Money Machine Preview Course Landing Page'
       })
 
       setStatus('success')
