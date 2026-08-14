@@ -8,6 +8,7 @@ const getAssetUrl = (path) => {
 
 const WHATSAPP_LINK = `https://wa.me/601167459987?text=${encodeURIComponent('您好，我有兴趣参加【打造企业赚钱机器 Preview 课程】，想了解更多详情。')}`
 const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbywkS3XXyHoJLNnfcNjPo707vGsK_oYYThl8bNlCTRVEY3X6DOKrZZbXPXUf4pQQMI/exec'
+const PREVIEW_LEAD_ENDPOINT = 'https://champion-course-video-room.vercel.app/api/preview-lead'
 const FB_GROUP_LINK = 'https://www.facebook.com/groups/champacademy'
 
 const COURSE = {
@@ -142,6 +143,8 @@ function RegisterForm() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', state: '' })
   const [status, setStatus] = useState('idle')
   const [showSuccess, setShowSuccess] = useState(false)
+  const [communityUrl, setCommunityUrl] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = e => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
 
@@ -149,6 +152,7 @@ function RegisterForm() {
     e.preventDefault()
     if (!form.name || !form.email || !form.phone || !form.state) return
     setStatus('submitting')
+    setErrorMessage('')
     try {
       const submittedAt = new Date().toLocaleString("en-MY", {
         timeZone: "Asia/Kuala_Lumpur",
@@ -161,7 +165,16 @@ function RegisterForm() {
         hour12: false
       })
 
-      await fetch(FORM_ENDPOINT, {
+      const response = await fetch(PREVIEW_LEAD_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, website: '' })
+      })
+      const result = await response.json().catch(() => ({}))
+      if (!response.ok || !result.ok) throw new Error(result.error || '暂时无法提交报名，请稍后再试')
+
+      setCommunityUrl(result.communityUrl || '')
+      fetch(FORM_ENDPOINT, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
@@ -173,12 +186,13 @@ function RegisterForm() {
           phone: form.phone,
           state: form.state
         }),
-      })
+      }).catch(() => {})
 
       setStatus('success')
       setShowSuccess(true)
-    } catch {
+    } catch (error) {
       setStatus('error')
+      setErrorMessage(error.message || '暂时无法提交报名，请稍后再试')
     }
   }
 
@@ -192,21 +206,33 @@ function RegisterForm() {
         </div>
         <h3 className="text-2xl font-bold text-white">🎉 报名成功！</h3>
         <p className="text-gray-300">感谢您的报名，我们的顾问将在24小时内与您联系确认席位。</p>
-        <a 
-          href={FB_GROUP_LINK} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-white transition-all hover:opacity-90 shadow-xl"
-          style={{ background: '#1877F2' }}
-        >
-          加入 Facebook 学员群组
-        </a>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href={communityUrl || WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold text-white transition-all hover:opacity-90 shadow-xl"
+            style={{ background: '#25D366' }}
+          >
+            {communityUrl ? '加入 WhatsApp 学员群组' : '通过 WhatsApp 获取群组链接'}
+          </a>
+          <a
+            href={FB_GROUP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold text-white transition-all hover:opacity-90 shadow-xl"
+            style={{ background: '#1877F2' }}
+          >
+            加入 Facebook 学员群组
+          </a>
+        </div>
       </div>
     )
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      <input type="text" name="website" tabIndex="-1" autoComplete="off" className="hidden" aria-hidden="true" />
       <div>
         <label className="block text-sm font-semibold text-gray-200 mb-1">姓名 Name <span className="text-amber-400">*</span></label>
         <input
@@ -242,7 +268,7 @@ function RegisterForm() {
         </select>
       </div>
       {status === 'error' && (
-        <p className="text-red-400 text-sm text-center">提交失败，请检查网络后重试</p>
+        <p className="text-red-400 text-sm text-center">{errorMessage}</p>
       )}
       <button
         type="submit" 
