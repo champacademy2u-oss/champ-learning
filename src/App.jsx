@@ -7,6 +7,7 @@ const getAssetUrl = (path) => {
 };
 
 const WHATSAPP_LINK = `https://wa.me/601167459987?text=${encodeURIComponent('您好，我有兴趣参加【打造企业赚钱机器 Preview 课程】，想了解更多详情。')}`
+const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/Hf2w6YOWrHbEBVxolKvekI?mode=gi_t'
 const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbywkS3XXyHoJLNnfcNjPo707vGsK_oYYThl8bNlCTRVEY3X6DOKrZZbXPXUf4pQQMI/exec'
 const PREVIEW_LEAD_ENDPOINT = 'https://champion-course-video-room.vercel.app/api/preview-registration'
 const FB_GROUP_LINK = 'https://www.facebook.com/groups/champacademy'
@@ -143,7 +144,6 @@ function RegisterForm() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', state: '' })
   const [status, setStatus] = useState('idle')
   const [showSuccess, setShowSuccess] = useState(false)
-  const [communityUrl, setCommunityUrl] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = e => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -173,7 +173,6 @@ function RegisterForm() {
       const result = await response.json().catch(() => ({}))
       if (!response.ok || !result.ok) throw new Error(result.error || '暂时无法提交报名，请稍后再试')
 
-      setCommunityUrl(result.communityUrl || '')
       fetch(FORM_ENDPOINT, {
         method: 'POST',
         mode: 'no-cors',
@@ -208,13 +207,13 @@ function RegisterForm() {
         <p className="text-gray-300">感谢您的报名，我们的顾问将在24小时内与您联系确认席位。</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
-            href={communityUrl || WHATSAPP_LINK}
+            href={WHATSAPP_GROUP_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold text-white transition-all hover:opacity-90 shadow-xl"
             style={{ background: '#25D366' }}
           >
-            {communityUrl ? '加入 WhatsApp 学员群组' : '通过 WhatsApp 获取群组链接'}
+            加入 WhatsApp 学习群
           </a>
           <a
             href={FB_GROUP_LINK}
