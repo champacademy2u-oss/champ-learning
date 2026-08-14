@@ -8,7 +8,7 @@ const getAssetUrl = (path) => {
 
 const WHATSAPP_LINK = `https://wa.me/601167459987?text=${encodeURIComponent('您好，我有兴趣参加【打造企业赚钱机器 Preview 课程】，想了解更多详情。')}`
 const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbywkS3XXyHoJLNnfcNjPo707vGsK_oYYThl8bNlCTRVEY3X6DOKrZZbXPXUf4pQQMI/exec'
-const PREVIEW_LEAD_ENDPOINT = 'https://champion-course-video-room.vercel.app/api/preview-lead'
+const PREVIEW_LEAD_ENDPOINT = 'https://champion-course-video-room.vercel.app/api/preview-registration'
 const FB_GROUP_LINK = 'https://www.facebook.com/groups/champacademy'
 
 const COURSE = {
