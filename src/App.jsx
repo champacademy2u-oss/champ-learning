@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 const getAssetUrl = (path) => {
   if (!path) return path;
@@ -6,14 +6,14 @@ const getAssetUrl = (path) => {
   return `${import.meta.env.BASE_URL}${cleanPath}`;
 };
 
-const WHATSAPP_LINK = `https://wa.me/601167459987?text=${encodeURIComponent('您好，我有兴趣参加【打造企业赚钱机器 Preview 课程】，想了解更多详情。')}`
+const WHATSAPP_LINK = `https://wa.me/601167459987?text=${encodeURIComponent('您好，我有兴趣参加【2026 流量密码 2.0】，想了解更多详情。')}`
 const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/Hf2w6YOWrHbEBVxolKvekI?mode=gi_t'
 const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbywkS3XXyHoJLNnfcNjPo707vGsK_oYYThl8bNlCTRVEY3X6DOKrZZbXPXUf4pQQMI/exec'
 const PREVIEW_LEAD_ENDPOINT = 'https://champion-course-video-room.vercel.app/api/preview-registration'
 const FB_GROUP_LINK = 'https://www.facebook.com/groups/champacademy'
 
 const COURSE = {
-  date: '2026年8月28日（星期五）',
+  date: '2026年9月17日（星期四）',
   time: '8:30 PM till Late',
   venue: '线上 Zoom'
 }
@@ -37,29 +37,29 @@ const STATE_OPTIONS = [
 ]
 
 const FAQS = [
-  { q: '谁适合参与这个 Preview 课程？', a: '适合想让企业有业绩也有盈利的老板、创业者、营销负责人，以及正面对获客成本高、价格战、成交率低、复购不足或利润被成本压缩的团队。' },
-  { q: '请问主讲人是 Ryan Lim 军师吗？', a: '是的，这场 Preview 课程由 Ryan Lim 军师主讲，分享如何从定位、产品价值、营销获客、成交交付到成本利润，建立企业赚钱系统。' },
+  { q: '谁适合参与流量密码 2.0？', a: '适合企业老板、创业者、营销负责人，以及想找准流量、提高转化、放大利润，并运用 AI 提升营销效率的团队。' },
+  { q: '请问主讲人是 Ryan Lim 军师吗？', a: '是的，这场课程由 Ryan Lim 军师主讲，分享如何用系统思维打造可持续赚钱的流量引擎。' },
   { q: '请问在哪里上课？', a: `课程通过 ${COURSE.venue} 举行，任何地区的企业主都可以在线参与。` },
   { q: '请问可以看重播吗？', a: '是否提供重播，以课程团队发送的报名确认通知为准。建议预留时间参加 Zoom 直播。' },
   { q: '请问课程几点开始？', a: `课程日期为 ${COURSE.date}，时间为 ${COURSE.time}。` },
-  { q: '请问课程收费多少？', a: '本页面用于登记 Preview 课程席位；如有费用或名额安排，请以课程团队的最新确认通知为准。' },
+  { q: '请问课程收费多少？', a: '本页面用于登记流量密码 2.0 课程席位；如有费用或名额安排，请以课程团队的最新确认通知为准。' },
   { q: '请问报名后，下一步要做什么？', a: `填写正确的 Email 与电话号码后，课程团队会联系您确认席位与 Zoom 参与方式。请先记下 ${COURSE.date}、${COURSE.time}。` }
 ]
 
 const WHAT_TO_DO = [
-  ['精准定位目标客户', '吸引高价值客户'],
-  ['打造有价值的产品／服务', '解决客户痛点'],
-  ['建立高效营销系统', '持续获客，稳定流量'],
-  ['优化成交与交付流程', '提升客户体验，创造口碑推荐'],
-  ['精细化成本与财务管理', '控制成本，提高利润率']
+  ['找对流量入口', '看懂 Facebook、Google、短视频、社交平台与内容渠道的角色'],
+  ['把钱投在关键位置', '根据目标、受众与转化阶段分配广告预算'],
+  ['用内容建立信任', '让内容不只带来曝光，也推动询问与成交'],
+  ['用 AI 提升效率', '加速创意、内容、分析与营销执行'],
+  ['建立可复制系统', '把流量、转化、销售与利润串成持续增长的引擎']
 ]
 
 const WHAT_TO_AVOID = [
-  ['盲目追求所有客户', '定位不精准，获客成本高'],
-  ['产品／服务没有差异化', '陷入价格战，利润被压缩'],
-  ['只做流量，不做转化', '浪费时间和金钱'],
-  ['服务不到位', '客户流失，没有复购'],
-  ['不控制成本', '赚到的都变成了开销']
+  ['追热点却没有策略', '流量来得快，也走得快'],
+  ['只加预算不看数据', '广告费上升，转化没有同步增长'],
+  ['只看点击不看成交', '表面数据漂亮，实际利润不足'],
+  ['每个平台都用同一套内容', '讯息不匹配，受众无法被说服'],
+  ['把 AI 当捷径', '没有商业逻辑，再多工具也难带来结果']
 ]
 
 function useWindowSize() {
@@ -274,7 +274,7 @@ function RegisterForm() {
         disabled={status === 'submitting'}
         className="w-full py-4 rounded-xl font-extrabold text-lg text-black transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl disabled:opacity-60 disabled:cursor-not-allowed bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 border-[3px] border-yellow-200 shadow-amber-500/20 shadow-lg mt-4 cursor-pointer force-gold-btn"
       >
-        {status === 'submitting' ? '提交中...' : '👉 提交 Preview 课程报名'}
+        {status === 'submitting' ? '提交中...' : '👉 提交流量密码 2.0 报名'}
       </button>
       <div className="flex items-center justify-center gap-2 text-gray-400 text-xs text-center pt-1">
         <span>🔒 256-bit SSL 官方加密</span>
@@ -288,38 +288,9 @@ function RegisterForm() {
 export default function App() {
   const [openAccordion, setOpenAccordion] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isPreviewMuted, setIsPreviewMuted] = useState(true)
-  const previewVideoRef = useRef(null)
-
-  useEffect(() => {
-    const video = previewVideoRef.current
-    if (!video || !('IntersectionObserver' in window)) return
-    video.muted = true
-
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        if (video.ended) video.currentTime = 0
-        video.play().catch(() => {})
-      } else {
-        video.pause()
-      }
-    }, { threshold: 0.55 })
-
-    observer.observe(video)
-    return () => observer.disconnect()
-  }, [])
 
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
-  const enablePreviewSound = () => {
-    const video = previewVideoRef.current
-    if (!video) return
-
-    video.muted = false
-    video.currentTime = 0
-    video.play().catch(() => {})
-    setIsPreviewMuted(false)
-  }
 
   return (
     <div className="min-h-screen bg-[#0d1527] text-white font-sans overflow-x-hidden selection:bg-amber-400 selection:text-black">
@@ -353,7 +324,7 @@ export default function App() {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2 text-amber-400 font-bold text-sm md:text-base">
             <span className="inline-block w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
-            【ChampAcademy Preview 课程】打造企业赚钱机器
+            【ChampAcademy】2026 流量密码 2.0
           </div>
           <div className="text-gray-300 text-xs md:text-sm">
             {COURSE.date} | {COURSE.time}（{COURSE.venue}）
@@ -369,26 +340,26 @@ export default function App() {
         <div className="max-w-5xl mx-auto px-4 text-center space-y-6">
           
           <div className="inline-block bg-amber-400/10 border border-amber-400/40 text-amber-400 px-5 py-1.5 rounded-full text-xs md:text-sm font-bold tracking-wider">
-            ★ 打造 Money Machine · 企业赚钱机器 Preview 课程 ★
+            ★ STRATEGY · TRAFFIC · SALES · AUTOMATION · PROFIT ★
           </div>
 
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            不是有业绩没盈利，
-            <span className="block">而是有业绩又有盈利！</span>
+            流量不是运气，
+            <span className="block">而是一套可以复制的系统</span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 mt-2">
-              打造企业赚钱机器
+              2026 流量密码 2.0
             </span>
           </h1>
 
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto font-medium">
-            战略＝战（什么该做）＋略（什么不该做）。做对战略选择，让生意自动为你赚钱。
+            流量在哪 · 钱怎么投 · AI 怎么赢
           </p>
 
           {/* Official course visual supplied by the course owner */}
           <div className="max-w-3xl mx-auto my-6 rounded-2xl overflow-hidden shadow-2xl border-2 border-amber-500/40 bg-black">
             <img
-              src={getAssetUrl("assets/money-machine-preview-poster.png")}
-              alt="打造企业赚钱机器 Preview 课程海报"
+              src={getAssetUrl("assets/traffic-code-2-poster.png")}
+              alt="2026 流量密码 2.0 课程海报"
               className="w-full h-auto"
             />
           </div>
@@ -397,26 +368,26 @@ export default function App() {
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 py-4 text-center">
             <div className="bg-slate-900/80 border border-amber-500/30 p-3 rounded-xl">
               <div className="text-xl md:text-2xl font-black text-amber-400">9000万+</div>
-              <div className="text-xs text-gray-300 font-medium">广告费实战操盘</div>
+              <div className="text-xs text-gray-300 font-medium">广告费经验</div>
             </div>
             <div className="bg-slate-900/80 border border-amber-500/30 p-3 rounded-xl">
               <div className="text-xl md:text-2xl font-black text-amber-400">100家+</div>
-              <div className="text-xs text-gray-300 font-medium">行业第一</div>
+              <div className="text-xs text-gray-300 font-medium">行业第一企业</div>
+            </div>
+            <div className="bg-slate-900/80 border border-amber-500/30 p-3 rounded-xl">
+              <div className="text-xl md:text-2xl font-black text-amber-400">军师</div>
+              <div className="text-xs text-gray-300 font-medium">社交媒体营销</div>
             </div>
             <div className="bg-slate-900/80 border border-amber-500/30 p-3 rounded-xl">
               <div className="text-xl md:text-2xl font-black text-amber-400">100万+</div>
-              <div className="text-xs text-gray-300 font-medium">FB 专业版主</div>
-            </div>
-            <div className="bg-slate-900/80 border border-amber-500/30 p-3 rounded-xl">
-              <div className="text-xl md:text-2xl font-black text-amber-400">15亿</div>
-              <div className="text-xs text-gray-300 font-medium">10大案例总业绩高达</div>
+              <div className="text-xs text-gray-300 font-medium">FB 专页版主</div>
             </div>
           </div>
 
           {/* Course details */}
           <div className="max-w-2xl mx-auto bg-gradient-to-b from-slate-900/90 to-slate-950/90 border-2 border-amber-500/50 p-6 rounded-2xl shadow-xl space-y-4">
             <div className="text-2xl md:text-4xl font-extrabold text-amber-400">
-              长青稳定 · 成交一次，收益一世
+              用系统思维，打造持续赚钱的流量引擎
             </div>
 
             <div className="grid sm:grid-cols-3 gap-3 text-left">
@@ -438,50 +409,39 @@ export default function App() {
               onClick={openModal}
               className="w-full md:w-4/5 py-4 px-6 rounded-full font-black text-xl text-black bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 border-[3px] border-yellow-200 hover:scale-105 transition-all shadow-xl shadow-amber-500/25 animate-bounce-gentle cursor-pointer force-gold-btn"
             >
-              👉 立即报名 Preview 课程
+              👉 立即报名流量密码 2.0
             </button>
-            <p className="text-xs text-amber-300/80 font-medium">建立你的赚钱系统，让企业自动化运转，业绩与利润持续增长。</p>
+            <p className="text-xs text-amber-300/80 font-medium">找到更精准的流量，创造更高的转化与更大的利润。</p>
           </div>
 
         </div>
       </section>
 
-      {/* ── 2. COURSE PREVIEW VIDEO ── */}
+      {/* ── 2. COURSE OUTCOMES ── */}
       <section className="py-16 md:py-20 bg-slate-950 border-b border-slate-800 px-4">
         <div className="max-w-5xl mx-auto text-center space-y-8">
           <div className="space-y-3">
             <span className="inline-block rounded-full border border-amber-400/40 bg-amber-400/10 px-4 py-1.5 text-xs font-bold tracking-wider text-amber-400">
-              MONEY MACHINE 课程预览
+              SAME TRAFFIC · DIFFERENT RESULTS
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-white">
-              先看视频认识我们的 Ryan 军师
+              参加课程，你将掌握四个关键结果
             </h2>
           </div>
 
-          <div className="relative max-w-4xl mx-auto overflow-hidden rounded-2xl border-2 border-amber-500/40 bg-black shadow-2xl">
-            <video
-              ref={previewVideoRef}
-              className="block aspect-video w-full max-h-[80vh] bg-black object-contain"
-              controls
-              playsInline
-              preload="metadata"
-              onVolumeChange={(event) => setIsPreviewMuted(event.currentTarget.muted || event.currentTarget.volume === 0)}
-              aria-label="认识 Ryan 军师的课程介绍视频"
-            >
-              <source src={getAssetUrl("assets/money-machine-preview-video.mp4")} type="video/mp4" />
-              您的浏览器暂不支持播放此视频。
-            </video>
-
-            {isPreviewMuted && (
-              <button
-                type="button"
-                onClick={enablePreviewSound}
-                className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-yellow-200 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 px-6 py-3 text-sm font-black text-black shadow-2xl transition-transform hover:scale-105 md:text-lg"
-                aria-label="开启声音并从头播放视频"
-              >
-                🔊 点击开启声音
-              </button>
-            )}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              ['◎', '更精准的流量', '知道客户在哪里，并选择合适的渠道与讯息'],
+              ['◉', '更高的转化', '把曝光、点击和询问推进到实际成交'],
+              ['↗', '更大的利润', '让广告投入与销售系统共同放大回报'],
+              ['AI', 'AI 赋能增长', '用 AI 加速内容、分析与营销执行']
+            ].map(([icon, title, detail]) => (
+              <div key={title} className="rounded-2xl border border-amber-500/30 bg-slate-900/80 p-6 text-left shadow-xl">
+                <div className="text-3xl font-black text-amber-400">{icon}</div>
+                <h3 className="mt-4 text-xl font-extrabold text-white">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-gray-400">{detail}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -494,17 +454,17 @@ export default function App() {
         <div className="max-w-5xl mx-auto px-4 space-y-10">
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-5xl font-extrabold text-amber-400">
-              战略＝战（什么该做）＋略（什么不该做）
+              流量在哪 · 钱怎么投 · AI 怎么赢
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Preview 课程带你先看清正确选择，再把定位、价值、获客、成交、交付与利润串成一套赚钱系统。
+              流量密码 2.0 带你看清正确打法，把内容、流量、销售、自动化与利润串成一套可复制的系统。
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 items-stretch">
             <div className="bg-slate-900/80 border-2 border-amber-500/50 rounded-2xl overflow-hidden shadow-2xl">
               <h3 className="bg-gradient-to-r from-amber-500 to-yellow-500 px-6 py-4 text-2xl font-black text-black">
-                什么该做（战）✓
+                建立有效流量系统 ✓
               </h3>
               <ul className="space-y-3 p-6 text-gray-200">
                 {WHAT_TO_DO.map(([title, detail]) => (
@@ -518,7 +478,7 @@ export default function App() {
 
             <div className="bg-slate-900/80 border-2 border-amber-500/30 rounded-2xl overflow-hidden shadow-2xl">
               <h3 className="bg-slate-950 px-6 py-4 text-2xl font-black text-amber-400 border-b border-amber-500/30">
-                什么不该做（略）✕
+                避开无效投放陷阱 ✕
               </h3>
               <ul className="space-y-3 p-6 text-gray-200">
                 {WHAT_TO_AVOID.map(([title, detail]) => (
@@ -545,7 +505,7 @@ export default function App() {
               主讲导师：Ryan Lim 军师
             </h2>
             <p className="text-xl md:text-2xl text-white font-bold">
-              上市公司 Marketing 操盘手 / Marketing Director
+              数间上市公司 Marketing 负责人 / Marketing Director
             </p>
           </div>
 
@@ -570,9 +530,9 @@ export default function App() {
               </h3>
               <ul className="space-y-2 text-gray-200 text-sm md:text-base">
                 <li>• 9000万+ 广告费经验</li>
-                <li>• 100家+ 行业第一</li>
-                <li>• 100万+ FB 专业版主</li>
-                <li>• 10大成功案例，总业绩高达15亿</li>
+                <li>• 100家+ 行业第一企业</li>
+                <li>• 社交媒体军师</li>
+                <li>• 100万+ FB 专页版主</li>
               </ul>
             </div>
           </div>
@@ -637,16 +597,16 @@ export default function App() {
       <section className="py-12 bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 text-black text-center px-4">
         <div className="max-w-4xl mx-auto space-y-4">
           <h2 className="text-2xl md:text-4xl font-black">
-            建立你的赚钱系统，让企业自动化运转
+            打造可持续赚钱的流量引擎
           </h2>
           <p className="text-base md:text-lg font-bold">
-            做好战略选择，让业绩与利润持续增长。
+            用同样的流量，创造更高的转化和更大的利润。
           </p>
           <button 
             onClick={openModal}
             className="px-8 py-3.5 rounded-full font-black text-lg text-white bg-slate-950 hover:bg-slate-900 transition-all shadow-xl hover:scale-105 cursor-pointer"
           >
-            👉 登记 Preview 课程席位
+            👉 登记流量密码 2.0 席位
           </button>
         </div>
       </section>
@@ -663,17 +623,17 @@ export default function App() {
               什么人适合参加？
             </h2>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              如果你的企业正在面对以下问题，这场 Preview 课程正是为你准备的。
+              如果你的企业正在面对以下问题，这场流量密码 2.0 正是为你准备的。
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              "客户定位不够精准，获客成本越来越高",
-              "产品或服务缺少差异化，长期陷入价格战",
-              "有流量却没有转化，投入时间和预算看不到回报",
-              "成交与交付流程不稳定，客户没有复购与推荐",
-              "营收看似增长，利润却不断被成本与开销压缩"
+              "广告费不断增加，却不知道预算该投在哪个渠道",
+              "内容有曝光、广告有点击，但询问和成交不稳定",
+              "Facebook、Google、短视频和社交平台都在做，却没有清楚策略",
+              "营销团队忙于执行，数据、内容与销售没有形成闭环",
+              "想使用 AI 提升效率，却不知道怎样连接实际业绩与利润"
             ].map((item, idx) => (
               <div key={idx} className="bg-slate-900/80 border border-slate-800 p-6 rounded-xl flex items-start gap-4">
                 <span className="text-amber-400 text-2xl font-black">✔</span>
@@ -682,13 +642,13 @@ export default function App() {
             ))}
           </div>
 
-          {/* Money machine system path */}
+          {/* Traffic system path */}
           <div className="bg-slate-950 border-2 border-amber-500/40 p-8 rounded-2xl text-center space-y-6">
             <h3 className="text-2xl md:text-3xl font-extrabold text-amber-400">
-              企业赚钱机器的五个关键环节
+              流量密码 2.0 的五步增长系统
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
-              {['精准定位', '价值产品', '营销获客', '成交交付', '成本利润'].map((item, idx) => (
+              {['AI', 'CONTENT', 'TRAFFIC', 'SALES', 'PROFIT'].map((item, idx) => (
                 <div key={item} className="bg-slate-900 p-4 rounded-xl border border-slate-800">
                   <div className="text-amber-400 font-extrabold text-xl">{idx + 1}</div>
                   <div className="text-gray-300 font-semibold text-sm mt-1">{item}</div>
@@ -709,7 +669,7 @@ export default function App() {
               过往案例与实战展示
             </h2>
             <p className="text-gray-300">
-              了解 Ryan Lim 军师在不同行业的营销与商业系统实战资料。
+              了解 Ryan Lim 军师在不同行业的营销、流量与广告实战资料。
             </p>
           </div>
 
@@ -776,13 +736,13 @@ export default function App() {
             </h2>
             <div className="space-y-4 text-gray-200 text-base md:text-lg leading-relaxed">
               <p>
-                很多企业并不是没有业绩，而是有业绩却没有留下利润。问题往往不只是广告或销售技巧，而是缺少一套清楚的战略与可持续运转的系统。
+                流量不是运气，而是一套可以复制的系统。真正的问题往往不是没有平台，而是不清楚客户在哪里、钱该怎么投，以及如何把流量转成成交与利润。
               </p>
               <p>
-                战略，就是清楚知道什么该做，也知道什么不该做。从精准客户、价值产品、稳定获客、成交交付，到成本与利润，每一个环节都要互相配合。
+                从内容、广告、社交平台到销售流程，每一个环节都必须互相配合。AI 不是替代策略，而是把正确策略放大的工具。
               </p>
               <p>
-                这场 Preview 课程将带你看见企业赚钱机器的完整框架，帮助你开始建立长青稳定、能够自动化运转的赚钱系统。
+                流量密码 2.0 将带你看见从 AI、内容、流量、销售到利润的完整路径，开始建立可持续赚钱的流量引擎。
               </p>
             </div>
           </div>
@@ -813,7 +773,7 @@ export default function App() {
         <div className="max-w-3xl mx-auto bg-slate-900 border-2 border-amber-500/40 p-8 rounded-3xl shadow-2xl space-y-6">
           <div className="text-center space-y-2">
             <h2 className="text-3xl font-black text-amber-400">
-              填写表格 · 登记 Preview 课程席位
+              填写表格 · 登记流量密码 2.0 席位
             </h2>
             <p className="text-gray-300 text-sm">
               {COURSE.date} · {COURSE.time} · {COURSE.venue}；课程团队会联系您确认参与方式。
@@ -825,7 +785,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="py-8 bg-slate-950 text-center text-gray-400 text-xs md:text-sm border-t border-slate-800 space-y-2">
-        <p className="font-bold text-white">ChampAcademy - 打造企业赚钱机器 Preview 课程</p>
+        <p className="font-bold text-white">ChampAcademy - 2026 流量密码 2.0</p>
         <p>Copyright © {new Date().getFullYear()} ChampAcademy. All rights reserved.</p>
         <p>
           欲知更多详情，请联系：
@@ -838,14 +798,14 @@ export default function App() {
       {/* Floating Bottom Bar (Sticky Mobile Bar) */}
       <div className="fixed bottom-0 inset-x-0 bg-slate-950/95 border-t border-amber-500/40 p-3 z-50 backdrop-blur-md flex items-center justify-between px-4 max-w-5xl mx-auto">
         <div className="hidden sm:flex flex-col">
-          <span className="text-amber-400 font-extrabold text-sm">【打造企业赚钱机器】Preview 课程</span>
+          <span className="text-amber-400 font-extrabold text-sm">【2026 流量密码 2.0】</span>
           <span className="text-gray-300 text-xs">{COURSE.date} · {COURSE.venue}</span>
         </div>
         <button
           onClick={openModal}
           className="w-full sm:w-auto px-6 py-2.5 rounded-full font-black text-sm md:text-base text-black bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 border-2 border-yellow-200 hover:scale-105 transition-all shadow-lg shadow-amber-500/20 cursor-pointer force-gold-btn"
         >
-          👉 立即报名 Preview 课程
+          👉 立即报名流量密码 2.0
         </button>
       </div>
 
@@ -862,10 +822,10 @@ export default function App() {
             
             <div className="text-center space-y-2 mb-6">
               <span className="bg-amber-400/20 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-400/30">
-                Preview 课程报名
+                流量密码 2.0 报名
               </span>
               <h3 className="text-2xl font-extrabold text-amber-400">
-                登记《打造企业赚钱机器》课程席位
+                登记《2026 流量密码 2.0》课程席位
               </h3>
               <p className="text-gray-300 text-xs">
                 请正确填写以下信息，课程团队会联系您确认席位与 Zoom 参与方式
